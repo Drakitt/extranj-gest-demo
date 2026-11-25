@@ -1,0 +1,19 @@
+# Base exclusiva de la demo. No arrancar hasta autorización explícita.
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: crm-servicios-demo-db
+    restart: "no"
+    environment:
+      POSTGRES_USER: crm_servicios_demo
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: crm_servicios_demo
+    ports:
+      - "5436:5432"
+    volumes:
+      - crm_servicios_demo_data:/var/lib/postgresql/data
+
+volumes:
+  crm_servicios_demo_data:
+    name: crm_servicios_demo_data
